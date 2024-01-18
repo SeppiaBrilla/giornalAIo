@@ -97,6 +97,11 @@
         <!-- Articles will be dynamically updated here -->
     </section>
     <script>
+        Date.prototype.toDateInputValue = (function() {
+            var local = new Date(this);
+            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+            return local.toJSON().slice(0,10);
+        });
         function updateArticles() {
             // Get the selected date from the datepicker
             const selectedDate = document.getElementById('datepicker').value;
@@ -157,6 +162,7 @@
                 });
             }
         }
+    document.getElementById('datepicker').value = new Date().toDateInputValue();
     updateArticles();
     </script>
 </body>
