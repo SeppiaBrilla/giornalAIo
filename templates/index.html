@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .newspaper-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        #datepicker {
+            margin-top: 10px;
+        }
+
+        #articles {
+            padding: 20px;
+        }
+
+        .disclaimer-box {
+            background-color: #ff0000;
+            color: #fff;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        article {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer; /* Add pointer cursor for clickable articles */
+        }
+
+        article h2 {
+            margin-bottom: 10px;
+        }
+
+        article p {
+            margin-bottom: 0; /* Remove default bottom margin for paragraphs */
+        }
+
+        .suggested-articles {
+            margin-top: 30px;
+        }
+
+        .suggested-article {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <title>GiornalAIo</title>
+</head>
+<body>
+    <header>
+        <h1 class="newspaper-title">GiornalAIo</h1>
+        <input type="date" id="datepicker" onchange="updateArticles()">
+    </header>
+    <section id="articles">
+        <!-- Articles will be dynamically updated here -->
+    </section>
+    <script>
+        function updateArticles() {
+            // Get the selected date from the datepicker
+            const selectedDate = document.getElementById('datepicker').value;
+
+            // Perform logic to fetch articles for the selected date (replace this with your own logic)
+            const articles = getArticlesForDate(selectedDate);
+
+            // Update the articles section with the new articles
+            displayArticles(articles);
+        }
+
+        function getArticlesForDate(date) {
+            // Replace this with your own logic to fetch articles based on the selected date
+            // Example: You might fetch articles from a server using AJAX or from a local database
+            // For now, let's assume we have a static list of articles for demonstration purposes.
+            const staticArticles = 
+                ARTICLES_DATA
+                // Add more date-article mappings as needed
+            ;
+
+            return staticArticles[date] || [];
+        }
+
+        function displayArticles(articles) {
+            const articlesContainer = document.getElementById('articles');
+
+            // Clear existing articles
+            articlesContainer.innerHTML = '';
+
+            if (articles.length === 0) {
+                const noArticlesMessage = document.createElement('p');
+                noArticlesMessage.textContent = 'No articles available for the selected date.';
+                articlesContainer.appendChild(noArticlesMessage);
+            } else {
+                articles.forEach(articleData => {
+                    const articleElement = document.createElement('article');
+
+                    // Create an anchor element for each article
+                    const articleLink = document.createElement('a');
+                    articleLink.href = articleData.url;
+                    articleLink.style.textDecoration = 'none'; // Remove default underline
+                    articleLink.style.color = 'inherit'; // Inherit color from parent
+
+                    const titleElement = document.createElement('h2');
+                    titleElement.textContent = articleData.title;
+
+                    const snippetElement = document.createElement('p');
+                    snippetElement.textContent = articleData.snippet;
+
+                    // Append title and snippet to the anchor element
+                    articleLink.appendChild(titleElement);
+
+                    // Append the anchor element to the article
+                    articleElement.appendChild(articleLink);
+
+                    // Append the article to the articles container
+                    articlesContainer.appendChild(articleElement);
+                });
+            }
+        }
+    updateArticles();
+    </script>
+</body>
+</html>
+

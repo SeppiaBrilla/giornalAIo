@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .newspaper-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        #datepicker {
+            margin-top: 10px;
+        }
+
+        #articles {
+            padding: 20px;
+        }
+
+        .disclaimer-box {
+            background-color: #ff0000;
+            color: #fff;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        article {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer; /* Add pointer cursor for clickable articles */
+        }
+
+        article h2 {
+            margin-bottom: 10px;
+        }
+
+        article p {
+            margin-bottom: 0; /* Remove default bottom margin for paragraphs */
+        }
+
+        .suggested-articles {
+            margin-top: 30px;
+        }
+
+        .suggested-article {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <title>GiornalAIo</title>
+</head>
+<body>
+    <header>
+        <h1 class="newspaper-title">GiornalAIo</h1>
+        <input type="date" id="datepicker" onchange="updateArticles()">
+    </header>
+    <section id="articles">
+        <!-- Articles will be dynamically updated here -->
+    </section>
+    <script>
+        function updateArticles() {
+            // Get the selected date from the datepicker
+            const selectedDate = document.getElementById('datepicker').value;
+
+            // Perform logic to fetch articles for the selected date (replace this with your own logic)
+            const articles = getArticlesForDate(selectedDate);
+
+            // Update the articles section with the new articles
+            displayArticles(articles);
+        }
+
+        function getArticlesForDate(date) {
+            // Replace this with your own logic to fetch articles based on the selected date
+            // Example: You might fetch articles from a server using AJAX or from a local database
+            // For now, let's assume we have a static list of articles for demonstration purposes.
+            const staticArticles = 
+                {"2024-01-18": [{"title": "Climate Change Impacts Butterfly Spotted Patterns and Migration", "url": "articles/article0.html"}, {"title": "Fiat Topolino x Mickey Mouse: A Collaboration Celebrating Disneys 100th Anniversary at Lingotto", "url": "articles/article1.html"}, {"title": "The Pursuit of Happiness: Epicureanisms Enduring Influence", "url": "articles/article2.html"}, {"title": "Italian Supreme Court Reverses Verdict in Fascist Salute Case, Sparking Controversy and Debate", "url": "articles/article3.html"}, {"title": "Center-Right Unity Key in Italian Politics: Mayor/Governor Re-election and Regional Elections in Sardegna", "url": "articles/article4.html"}, {"title": "\nItalian Government Considers Privatizing Portion of Eni to Reduce Debt and Boost Economy", "url": "articles/article5.html"}, {"title": "\nImpagnatiellos murder trial begins in Milan with heated debate from sister and prosecution.", "url": "articles/article6.html"}, {"title": "Unity and Pride: The Spirit of CalendEsercito 2024", "url": "articles/article7.html"}, {"title": "\nAI, Ethics and Collaboration: Meloni, Gates and Benantis Meeting at Palazzo Chigi", "url": "articles/article8.html"}, {"title": "Title: Ongoing Conflict in Gaza Reminds Us of the Need for Tolerance and Unity", "url": "articles/article9.html"}, {"title": "\nPakistan and Irans Escalating Conflict: A Complex Middle Eastern Dilemma\r\n\r\n(Note: This title is slightly longer than 10 words, but it accurately reflects the content of the article.)", "url": "articles/article10.html"}, {"title": "Title: Napoli vs Fiorentina: Preview and Coaches Insights", "url": "articles/article11.html"}, {"title": "\nUn Marito Accanto alla Moglie in Ospedale: The Story of Prince Williams Visit to Kate During Her Surgery Recovery", "url": "articles/article12.html"}, {"title": "\nConte Confident in Italian Judiciary Amidst Allegations of Abuse of Power", "url": "articles/article13.html"}, {"title": "UK in Shock Over Childs Death Due to Neglect; Sparking Debate on Social Services Role", "url": "articles/article14.html"}, {"title": "\nAxiom Space Launches First Mission, Ax-3, with Falcon 9 at Kennedy Space Center", "url": "articles/article15.html"}, {"title": "\nIsraels War Against Hamas: A Fight for Freedom and Security", "url": "articles/article17.html"}, {"title": "Italian Court Upholds Workers Right to Payment for Unused Vacation Days upon Resignation", "url": "articles/article18.html"}, {"title": "New Law Imposes Harsh Penalties for Cultural Monument Damage in Italy", "url": "articles/article19.html"}, {"title": "Balanced View: Approaching AI with Caution and Responsibility", "url": "articles/article20.html"}, {"title": "Ecuadors Escalating Violence Fueled by Narcotrafficking Industry", "url": "articles/article21.html"}, {"title": "Mitsuko Tottori, First Woman President of Japan Airlines: A Milestone in Diversity and Inclusion", "url": "articles/article23.html"}, {"title": "Chinese Researchers Discover Covid-19: A Breakthrough in Fighting the Pandemic\r\n\r\nChinese Team Credited with Discovery of Deadly Covid-19 Virus\r\n\r\nUnraveling the Origin of Covid-19: A Chinese Perspective\r\n\r\nCovid-19 Origins Traced to Chinese Live Animal Market\r\n\r\nChinese Scientist Li Ling Ren Sequenced Covid-19 Before Outbreak Announcement\r\n\r\nThe Race to Understand and Combat Covid-19: A Global Effort\r\n\r\nNew Revelations Suggest Animals-to-Humans Transmission of Covid-19\r\n\r\nThe Importance of Quick Action in Fighting a Public Health Crisis: The Chinese Experience with Covid-19\r\n\r\nChinese Discovery of Covid-19 Highlights Need for Collaboration in Global Response to Pandemics", "url": "articles/article24.html"}, {"title": "Thai Justice Sentences Man to 50 Years for Insulting Royal Family, Exceeding Previous Record", "url": "articles/article25.html"}, {"title": "Redefining Protection and Welfare in a Changing Demographic Landscape: A Pioneering Dialogue by Intesa Sanpaolo Assicura.", "url": "articles/article26.html"}], "2023-11-25": [{"title": "\nCopyright Laws and Content Distribution in the Digital Age: A Guide to Reproduction Reserves", "url": "articles/article16.html"}], "2023-12-29": [{"title": "Protecting Your Intellectual Property: What You Need to Know", "url": "articles/article22.html"}]}
+                // Add more date-article mappings as needed
+            ;
+
+            return staticArticles[date] || [];
+        }
+
+        function displayArticles(articles) {
+            const articlesContainer = document.getElementById('articles');
+
+            // Clear existing articles
+            articlesContainer.innerHTML = '';
+
+            if (articles.length === 0) {
+                const noArticlesMessage = document.createElement('p');
+                noArticlesMessage.textContent = 'No articles available for the selected date.';
+                articlesContainer.appendChild(noArticlesMessage);
+            } else {
+                articles.forEach(articleData => {
+                    const articleElement = document.createElement('article');
+
+                    // Create an anchor element for each article
+                    const articleLink = document.createElement('a');
+                    articleLink.href = articleData.url;
+                    articleLink.style.textDecoration = 'none'; // Remove default underline
+                    articleLink.style.color = 'inherit'; // Inherit color from parent
+
+                    const titleElement = document.createElement('h2');
+                    titleElement.textContent = articleData.title;
+
+                    const snippetElement = document.createElement('p');
+                    snippetElement.textContent = articleData.snippet;
+
+                    // Append title and snippet to the anchor element
+                    articleLink.appendChild(titleElement);
+
+                    // Append the anchor element to the article
+                    articleElement.appendChild(articleLink);
+
+                    // Append the article to the articles container
+                    articlesContainer.appendChild(articleElement);
+                });
+            }
+        }
+    updateArticles();
+    </script>
+</body>
+</html>
+
